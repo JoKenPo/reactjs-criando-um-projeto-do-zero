@@ -34,7 +34,6 @@
     "camelcase": "off",
     "import/no-duplicates": "off",
     "react/jsx-props-no-spreading": "off",
-    "prettier/prettier": "error",
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
     "jsx-a11y/anchor-is-valid": [
@@ -73,6 +72,12 @@
         "ts": "never",
         "tsx": "never"
       }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      },
     ],
     "@typescript-eslint/explicit-function-return-type": [
       "error",
