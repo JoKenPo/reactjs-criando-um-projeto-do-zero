@@ -5,6 +5,8 @@ import { getPrismicClient } from '../services/prismic';
 import commonStyles from '../styles/common.module.scss';
 import styles from './home.module.scss';
 import Head from 'next/head';
+import Link from 'next/link';
+import { FaRegCalendar, FaRegUser } from 'react-icons/fa';
 
 interface Post {
   uid?: string;
@@ -25,24 +27,34 @@ interface HomeProps {
   postsPagination: PostPagination;
 }
 
-export default function Home() {
+export default function Home({ postsPagination }: HomeProps) {
   return (
     // TODO
     <>
       <Head>
-        <title>Home | ig.news</title>
+        <title>Home | spacetravelling</title>
       </Head>
 
       <main className={styles.contentContainer}>
-        <section className={styles.hero}>
-          <span>👏 Hey, welcome</span>
-          <h1>News about<br />the <span>React</span> world.</h1>
-          <p>
-            Get access to all the publications <br />
-          </p>
-        </section>
+        <div className={styles.posts}>
+          {postsPagination?.results?.map(post => (
+            <Link href={`/posts/${post.uid}`}>
+              <a key={post.uid} >
+                <time>{post.first_publication_date}</time>
+                <strong>{post.data.title}</strong>
+                <p>{post.data.subtitle}</p>
+              </a>
+            </Link>
 
-        <img src="/images/avatar.svg" alt="Girl coding" />
+          ))}
+
+          <a href="#">
+
+            <strong>Creating a Monorepo with</strong>
+            <span>Texto grandãoo asdiuajsdiuashdiusadh asiduahsidu asdiuashndiasndas</span>
+            <p><FaRegCalendar /><time>23 de Junho de 2022</time></p> <p><FaRegUser />Eduardo Almeida</p>
+          </a>
+        </div>
       </main>
     </>
   )
