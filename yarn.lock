@@ -1094,6 +1094,13 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@^7.18.9":
+  version "7.18.9"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.18.9.tgz#b4fcfce55db3d2e5e080d2490f608a3b9f407f4a"
+  integrity sha512-lkqXDcvlFT5rvEjiu6+QYO+1GXrEHRo2LOtS7E4GtX5ESIZOgepqsZBVIj6Pv+a6zqsya9VCgiK1KAK4BvJDAw==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/template@^7.16.7", "@babel/template@^7.3.3":
   version "7.16.7"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.16.7.tgz#8d126c8701fde4d66b264b3eba3d96f07666d155"
@@ -1554,10 +1561,10 @@
   resolved "https://registry.yarnpkg.com/@panva/hkdf/-/hkdf-1.0.2.tgz#bab0f09d09de9fd83628220d496627681bc440d6"
   integrity sha512-MSAs9t3Go7GUkMhpKC44T58DJ5KGk2vBo+h1cqQeqlMfdGkxaVB78ZWpv9gYi/g2fa4sopag9gJsNvS8XGgWJA==
 
-"@prismicio/client@^6.6.1":
-  version "6.6.1"
-  resolved "https://registry.yarnpkg.com/@prismicio/client/-/client-6.6.1.tgz#087547a7d3283906a0d4cf7ea417e756fdc9b8eb"
-  integrity sha512-Jq/s9fC8pz49f68dk6gMNFqDItPg7Ka8PO0D9dTzibx83+GKha+y0clqaygxPWlgE8csc9Yk/KS6N8AvesnTVA==
+"@prismicio/client@^6.6.2":
+  version "6.6.2"
+  resolved "https://registry.yarnpkg.com/@prismicio/client/-/client-6.6.2.tgz#031275aebbe791bc83d2a821eb3944b16a5f82e0"
+  integrity sha512-VVI7/frKmnO4UGIi67gYp2t3aTe6nFOY527wn8nfL0TjPrYbDxdPEcC7Rfhbio7F5hfk0ABbqq1Qd0rXskKuNA==
   dependencies:
     "@prismicio/helpers" "^2.3.1"
     "@prismicio/types" "^0.1.29"
@@ -1587,6 +1594,16 @@
     escape-html "^1.0.3"
     imgix-url-builder "^0.0.3"
 
+"@prismicio/helpers@^2.3.2":
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/@prismicio/helpers/-/helpers-2.3.2.tgz#602e3f2ab432ecbc91b2485e2b9743ebc94fee48"
+  integrity sha512-7FyvybtzvqSvFrDL/Dhb91ADrgwhWaNBA8svX/xs3BrARpGicdNBLiy8WBMM3+pD13tLFi8AxOr5563ORO+siw==
+  dependencies:
+    "@prismicio/richtext" "^2.1.0"
+    "@prismicio/types" "^0.2.0"
+    escape-html "^1.0.3"
+    imgix-url-builder "^0.0.3"
+
 "@prismicio/next@^0.1.2":
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@prismicio/next/-/next-0.1.2.tgz#f63567b97bf7bd5ddfa1bdfee8bf1ab81e9aa2b2"
@@ -1602,10 +1619,10 @@
     "@prismicio/helpers" "^2.3.0"
     "@prismicio/richtext" "^2.0.1"
 
-"@prismicio/react@^2.4.2":
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/@prismicio/react/-/react-2.4.2.tgz#581a16f1b682e530fe99a7caad3f47353bd527b8"
-  integrity sha512-KyCZBdJosE93S7sl+Z//eDdbT7vYNGNZ60rOs1VETbDXJtJhh7ymSZul5cvb8MrSrH8yn9DiR4rGVVXLobnHSA==
+"@prismicio/react@^2.4.3":
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/@prismicio/react/-/react-2.4.3.tgz#d8ddbd26053a18fbab04ba685ad63fc64281e537"
+  integrity sha512-HedWPdxchfjYhiHQxsBbN++hsjXk0t3LJ58K7ISIkogv09MdOC2q26d4XFoEyew8EL/EJ4h/fT7FaekFv0Azfg==
   dependencies:
     "@prismicio/helpers" "^2.3.1"
     "@prismicio/richtext" "^2.0.1"
@@ -1619,6 +1636,13 @@
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@prismicio/richtext/-/richtext-2.0.1.tgz#6342f071601d88e99ca03faab382202087fd55a5"
   integrity sha512-sM+eusvE4PsKnwefDRd0ai3Ny59XJ54dn6xfwq0Fyqj0LAcuyB2gRjSufbIqYOZ1r4JKMQArDKrypNEcrbBFkA==
+  dependencies:
+    "@prismicio/types" "^0.1.22"
+
+"@prismicio/richtext@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@prismicio/richtext/-/richtext-2.1.0.tgz#b17a5ea0eccb9ac0ac9229416462da78a986ca53"
+  integrity sha512-uxJaR3soPr356stoLEIcgn+68lfolwxRmlDLTF4gYDcF30rB0YFLPcdRJmhtkU6LGZXIhwUUmwMWXkhT+DV3hA==
   dependencies:
     "@prismicio/types" "^0.1.22"
 
@@ -1665,6 +1689,11 @@
   resolved "https://registry.yarnpkg.com/@prismicio/types/-/types-0.1.29.tgz#52914a5ba304c8b75fdcf398e5014ac4364fdffb"
   integrity sha512-wp7DHqMK0FDMcFQfJbqTAzWNBkM6/rRq71jMw6x9m07nWCUqytJQQKg6/15uduIeSqPXmyfJW21drsmChGaxsQ==
 
+"@prismicio/types@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@prismicio/types/-/types-0.2.0.tgz#100f147bb6f63eb8721d972c9381d2774fc37f55"
+  integrity sha512-xxBSbRzKOYoqjRp+wcaA7aMp0yLp6GQ5QH5hwvLXL0ftVvX8A1pHR3mE6B8kgKgouCC2Ma8XsDRqf+AcfQDbdA==
+
 "@scarf/scarf@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@scarf/scarf/-/scarf-1.1.1.tgz#d8b9f20037b3a37dbf8dcdc4b3b72f9285bfce35"
@@ -1689,13 +1718,13 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@slicemachine/client@1.1.10":
-  version "1.1.10"
-  resolved "https://registry.yarnpkg.com/@slicemachine/client/-/client-1.1.10.tgz#db93fb6a4054de3144de02258c4cfe438345378b"
-  integrity sha512-OcAqwRMiW7+M1BRYhB7hlx8q2xDvwtebJsSS64ZHVLJO8iqdl6i7ZrhkFvTABLe92RwiDaAB0AsZJUJaOVeepQ==
+"@slicemachine/client@1.1.11":
+  version "1.1.11"
+  resolved "https://registry.yarnpkg.com/@slicemachine/client/-/client-1.1.11.tgz#600ad03e5a5613fa746d7da750a0fde2c12abb6c"
+  integrity sha512-F/ZqWRJ2xHfEm22Wbw0e3KA9ow52YJ6D8Rr5RGwlWF0qo2f7DfvxC44OGCw1sUJ0egemfjYECruYP2p0DMmTqA==
   dependencies:
     "@prismicio/types-internal" "^0.2.8"
-    "@slicemachine/core" "1.1.10"
+    "@slicemachine/core" "1.1.11"
     axios "^0.27.2"
     form-data "^3.0.0"
     fp-ts "^2.11.5"
@@ -1703,11 +1732,12 @@
     mime "^2.5.2"
     uniqid "^5.4.0"
 
-"@slicemachine/core@1.1.10":
-  version "1.1.10"
-  resolved "https://registry.yarnpkg.com/@slicemachine/core/-/core-1.1.10.tgz#2b98d441e9115dc4ecb21f74ea6d011573592b71"
-  integrity sha512-i2a1rORSl4re+aZyMub1K5zw+LJDQNkPWxlSirjAuu8TtDKPPTRGHCYqHHCayTtxzgXZvlTEeWZWiKXsyZFmIw==
+"@slicemachine/core@1.1.11":
+  version "1.1.11"
+  resolved "https://registry.yarnpkg.com/@slicemachine/core/-/core-1.1.11.tgz#4e1f02c31663cdbac59accdcf4d540d0e87ac4eb"
+  integrity sha512-KMd5fvoigpkDD90slL/Ij658gVr3APcarJXw92bw7LGqBtNizx1B041p3SbyHgta0M0hs85ah6fuMkqw96cGPA==
   dependencies:
+    "@babel/runtime" "^7.18.9"
     "@prismicio/types-internal" "^0.2.8"
     cookie "^0.4.1"
     fp-ts "^2.11.5"
@@ -8697,16 +8727,16 @@ slice-ansi@^4.0.0:
     astral-regex "^2.0.0"
     is-fullwidth-code-point "^3.0.0"
 
-slice-machine-ui@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/slice-machine-ui/-/slice-machine-ui-0.4.0.tgz#90f5ba55847898297bb4beda66855c20b24eff85"
-  integrity sha512-pN18OVOvudx16dz/r4So7aMfvl++eCzPRPPZTupvjD/fdwJQcWGEJzqNPeG37ttUFt2XM3oREYX90CBbgXwQiA==
+slice-machine-ui@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/slice-machine-ui/-/slice-machine-ui-0.4.1.tgz#a176b60b73834132683bbdc3d5127c081b1bdb35"
+  integrity sha512-OHwTt60w6calYJPON3WmxXmpz9YIvzWr+qt7PFfW/ybrEwSW9punZlsSkPdb3VYGDGz6/6zqDL1Ve18OpqOZ7A==
   dependencies:
     "@babel/register" "^7.17.7"
     "@faker-js/faker" "^6.0.0"
     "@prismicio/types-internal" "^0.2.7"
-    "@slicemachine/client" "1.1.10"
-    "@slicemachine/core" "1.1.10"
+    "@slicemachine/client" "1.1.11"
+    "@slicemachine/core" "1.1.11"
     "@svgr/webpack" "^5.4.0"
     atob "^2.1.2"
     axios "^0.26.0"

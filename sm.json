@@ -1,5 +1,5 @@
 {
-  "_latest": "0.3.0",
+  "_latest": "0.4.0",
   "apiEndpoint": "https://criando-projeto-do-zero-dudu.prismic.io/api/v2",
   "libraries": [
     "@/slices"

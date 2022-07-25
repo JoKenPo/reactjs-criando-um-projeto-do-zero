@@ -61,15 +61,34 @@ export default function Home({ postsPagination }: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  // const price = await stripe.prices.retrieve('price_1L6dnKHWUPDNLZSnyvmyDsAn')
+  const prismic = getPrismicClient()
 
-  const product = {
-  };
+  const response = await prismic.getByType(
+    'post'
+    , {
+      fetch: ['post.title', 'post.content'],
+      pageSize: 100,
+    })
+
+  console.log('response.results: ', response.results);
+
+  const posts = response.results.map(post => {
+    return {
+      // slug: post.uid,
+      // title: RichText.asText(post.data.Title),
+      // title: post.data.title,
+      // excerpt: post.data.content.find(content => content.type === 'paragraph')?.text ?? '',
+      updatedAt: new Date(post.last_publication_date).toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric'
+      })
+    }
+  })
 
   return {
     props: {
-      product
-    },
-    revalidate: 60 * 60 * 24, // 24 hours
+      posts
+    }
   }
 };
