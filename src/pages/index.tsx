@@ -37,12 +37,20 @@ export default function Home({ postsPagination }: HomeProps) {
 
       <main className={styles.contentContainer}>
         <div className={styles.posts}>
+          {console.log("retorno: ", postsPagination)}
           {postsPagination?.results?.map(post => (
             <Link href={`/posts/${post.uid}`}>
               <a key={post.uid} >
-                <time>{post.first_publication_date}</time>
                 <strong>{post.data.title}</strong>
-                <p>{post.data.subtitle}</p>
+                <span>{post.data.subtitle}</span>
+                <span>
+                  <p>
+                    <FaRegCalendar /><time>{post.first_publication_date}</time>
+                  </p>
+                  <p>
+                    <FaRegUser />{post.data.author}
+                  </p>
+                </span>
               </a>
             </Link>
 
@@ -52,7 +60,7 @@ export default function Home({ postsPagination }: HomeProps) {
 
             <strong>Creating a Monorepo with</strong>
             <span>Texto grandãoo asdiuajsdiuashdiusadh asiduahsidu asdiuashndiasndas</span>
-            <p><FaRegCalendar /><time>23 de Junho de 2022</time></p> <p><FaRegUser />Eduardo Almeida</p>
+            <span><p><FaRegCalendar /><time>23 de Junho de 2022</time></p> <p><FaRegUser />Eduardo Almeida</p></span>
           </a>
         </div>
       </main>
@@ -64,31 +72,36 @@ export const getStaticProps: GetStaticProps = async () => {
   const prismic = getPrismicClient()
 
   const response = await prismic.getByType(
-    'post'
+    'posts'
     , {
-      fetch: ['post.title', 'post.content'],
-      pageSize: 100,
+      // fetch: ['post.title', 'post.content'],
+      pageSize: 5,
     })
 
-  console.log('response.results: ', response.results);
+  // console.log('response.results: ', response.results);
 
   const posts = response.results.map(post => {
     return {
-      // slug: post.uid,
-      // title: RichText.asText(post.data.Title),
-      // title: post.data.title,
-      // excerpt: post.data.content.find(content => content.type === 'paragraph')?.text ?? '',
-      updatedAt: new Date(post.last_publication_date).toLocaleDateString('pt-BR', {
+      uid: post.uid,
+      first_publication_date: new Date(post.first_publication_date).toLocaleDateString('pt-BR', {
         day: '2-digit',
         month: 'long',
         year: 'numeric'
-      })
+      }),
+      data: {
+        title: post.data?.title,
+        subtitle: post.data?.subtitle,
+        author: post.data?.author,
+      }
     }
   })
 
   return {
     props: {
-      posts
+      postsPagination: {
+        results: posts,
+        next_page: 1
+      }
     }
   }
 };

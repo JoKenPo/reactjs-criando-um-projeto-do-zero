@@ -19,10 +19,10 @@
           "placeholder": ""
         }
       },
-      "sibtitle": {
+      "subtitle": {
         "type": "Text",
         "config": {
-          "label": "Sibtitle",
+          "label": "Subtitle",
           "placeholder": ""
         }
       },
