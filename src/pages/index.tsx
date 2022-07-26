@@ -8,6 +8,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { FaRegCalendar, FaRegUser } from 'react-icons/fa';
 import { useState } from 'react';
+import { format } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
 
 interface Post {
   uid?: string;
@@ -42,11 +44,11 @@ export default function Home({ postsPagination }: HomeProps) {
         const posts = data.results.map(post => {
           return {
             uid: post.uid,
-            first_publication_date: new Date(post.first_publication_date).toLocaleDateString('pt-BR', {
-              day: '2-digit',
-              month: 'long',
-              year: 'numeric'
-            }),
+            first_publication_date: format(
+              new Date(post.first_publication_date),
+              "dd MMM yyyy",
+              { locale: ptBR }
+            ),
             data: {
               title: post.data?.title,
               subtitle: post.data?.subtitle,
@@ -143,11 +145,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const posts = response.results.map(post => {
     return {
       uid: post.uid,
-      first_publication_date: new Date(post.first_publication_date).toLocaleDateString('pt-BR', {
-        day: '2-digit',
-        month: 'long',
-        year: 'numeric'
-      }),
+      first_publication_date: format(
+        new Date(post.first_publication_date),
+        "dd MMM yyyy",
+        { locale: ptBR }
+      ),
       data: {
         title: post.data?.title,
         subtitle: post.data?.subtitle,

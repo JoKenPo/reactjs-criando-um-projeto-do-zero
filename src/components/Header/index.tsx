@@ -4,7 +4,9 @@ export default function Header() {
   return (
     <header className={styles.headerContainer}>
       <div className={styles.headerContent}>
-        <img src="/images/logo_spacetravelling.svg" alt="logo" />
+        <a href={'/'}>
+          <img src="/images/logo_spacetravelling.svg" alt="logo" />
+        </a>
       </div>
     </header>
   )
