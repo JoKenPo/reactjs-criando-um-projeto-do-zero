@@ -28,18 +28,24 @@ interface PostProps {
 
 export default function Post() {
   // TODO
+  return (
+    <>
+      Texto
+    </>
+  )
 }
 
 export const getStaticPaths = async () => {
   const prismic = getPrismicClient({});
-  const posts = await prismic.getByType('post');
+  // const posts = await prismic.getByType('posts');
 
   // TODO
 };
 
 export const getStaticProps = async ({ params }) => {
+  console.log('params: ', params);
   const prismic = getPrismicClient({});
-  const response = await prismic.getByUID('uid', '1');
+  // const response = await prismic.getByUID('uid', String(params));
 
   // TODO
 };

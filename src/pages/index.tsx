@@ -7,6 +7,7 @@ import styles from './home.module.scss';
 import Head from 'next/head';
 import Link from 'next/link';
 import { FaRegCalendar, FaRegUser } from 'react-icons/fa';
+import { useState } from 'react';
 
 interface Post {
   uid?: string;
@@ -27,7 +28,40 @@ interface HomeProps {
   postsPagination: PostPagination;
 }
 
+
 export default function Home({ postsPagination }: HomeProps) {
+  const [nextPostsPagination, setNextPostsPagination] = useState<PostPagination>({
+    next_page: postsPagination.next_page,
+    results: []
+  });
+
+  const getNextPage = (url: string) => {
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const posts = data.results.map(post => {
+          return {
+            uid: post.uid,
+            first_publication_date: new Date(post.first_publication_date).toLocaleDateString('pt-BR', {
+              day: '2-digit',
+              month: 'long',
+              year: 'numeric'
+            }),
+            data: {
+              title: post.data?.title,
+              subtitle: post.data?.subtitle,
+              author: post.data?.author,
+            }
+          }
+        })
+
+        setNextPostsPagination({
+          results: posts,
+          next_page: data?.next_page
+        })
+      })
+  };
+
   return (
     // TODO
     <>
@@ -37,9 +71,9 @@ export default function Home({ postsPagination }: HomeProps) {
 
       <main className={styles.contentContainer}>
         <div className={styles.posts}>
-          {console.log("retorno: ", postsPagination)}
+
           {postsPagination?.results?.map(post => (
-            <Link href={`/posts/${post.uid}`}>
+            <Link href={`/post/${post.uid}`}>
               <a key={post.uid} >
                 <strong>{post.data.title}</strong>
                 <span>{post.data.subtitle}</span>
@@ -56,29 +90,55 @@ export default function Home({ postsPagination }: HomeProps) {
 
           ))}
 
-          <a href="#">
+          {nextPostsPagination.results.map(post => (
+            <Link href={`/post/${post.uid}`}>
+              <a key={post.uid} >
+                <strong>{post.data.title}</strong>
+                <span>{post.data.subtitle}</span>
+                <span>
+                  <p>
+                    <FaRegCalendar /><time>{post.first_publication_date}</time>
+                  </p>
+                  <p>
+                    <FaRegUser />{post.data.author}
+                  </p>
+                </span>
+              </a>
+            </Link>
+
+          ))}
+
+          {/* <a href="#">
 
             <strong>Creating a Monorepo with</strong>
             <span>Texto grandãoo asdiuajsdiuashdiusadh asiduahsidu asdiuashndiasndas</span>
             <span><p><FaRegCalendar /><time>23 de Junho de 2022</time></p> <p><FaRegUser />Eduardo Almeida</p></span>
-          </a>
+          </a> */}
+
+          {(nextPostsPagination?.next_page) && (
+
+            <button className={styles.nextPage} onClick={() => getNextPage(nextPostsPagination?.next_page)} >
+              Carregar mais posts
+            </button>
+          )}
         </div>
+
       </main>
     </>
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const prismic = getPrismicClient()
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const prismic = getPrismicClient({})
 
   const response = await prismic.getByType(
     'posts'
     , {
-      // fetch: ['post.title', 'post.content'],
-      pageSize: 5,
+      fetch: ['post.title'],
+      pageSize: 1,
     })
 
-  // console.log('response.results: ', response.results);
+  // console.log('response: ', response);
 
   const posts = response.results.map(post => {
     return {
@@ -100,7 +160,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       postsPagination: {
         results: posts,
-        next_page: 1
+        next_page: response?.next_page
       }
     }
   }
