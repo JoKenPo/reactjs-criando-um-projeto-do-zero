@@ -6,11 +6,14 @@ import Head from 'next/head';
 import { FaClock, FaRegCalendar, FaRegUser } from 'react-icons/fa'
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
+import { useRouter } from 'next/router';
 
 interface Post {
   first_publication_date: string | null;
+  uid: string;
   data: {
     title: string;
+    subtitle: string
     banner: {
       url: string;
     };
@@ -29,6 +32,9 @@ interface PostProps {
 }
 
 export default function Post({ post }: PostProps) {
+  const router = useRouter()
+
+  if (router.isFallback) return (<p>Carregando...</p>)
   return (
     <>
       <Head>
@@ -36,7 +42,7 @@ export default function Post({ post }: PostProps) {
       </Head>
 
       <main className={styles.contentContainer}>
-        {post ?
+        {post &&
           <>
             <div className={styles.infinityBanner}>
               <img src={post.data?.banner.url} alt="banner" />
@@ -71,14 +77,7 @@ export default function Post({ post }: PostProps) {
                 })}
               </div>
             </div>
-          </>
-          : (
-            <>
-              <p>
-                Carregando...
-              </p>
-            </>
-          )}
+          </>}
       </main>
     </>
   )
@@ -105,9 +104,11 @@ export const getStaticProps = async ({ params }) => {
   // console.log('response: ', response);
 
   const post = {
+    uid: response.uid,
     first_publication_date: response.first_publication_date,
     data: {
       title: response.data.title,
+      subtitle: response.data.subtitle,
       banner: {
         url: response.data.banner?.url
       },
