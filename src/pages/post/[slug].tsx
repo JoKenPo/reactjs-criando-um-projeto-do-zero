@@ -7,13 +7,14 @@ import { FaClock, FaRegCalendar, FaRegUser } from 'react-icons/fa'
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import { useRouter } from 'next/router';
+import { RichText } from 'prismic-dom';
 
 interface Post {
   first_publication_date: string | null;
   uid: string;
   data: {
     title: string;
-    subtitle: string
+    subtitle: string;
     banner: {
       url: string;
     };
@@ -35,6 +36,12 @@ export default function Post({ post }: PostProps) {
   const router = useRouter()
 
   if (router.isFallback) return (<p>Carregando...</p>)
+
+  const readingTime = Math.ceil(
+    post.data.content.reduce((time, words) => {
+      return time += RichText.asText(words.body).split(' ').length
+    }, 0) / 200)
+
   return (
     <>
       <Head>
@@ -45,7 +52,7 @@ export default function Post({ post }: PostProps) {
         {post &&
           <>
             <div className={styles.infinityBanner}>
-              <img src={post.data?.banner.url} alt="banner" />
+              <img src={post.data?.banner?.url} alt="banner" />
             </div>
             <div className={styles.posts}>
               <h1>{post.data.title}</h1>
@@ -63,10 +70,10 @@ export default function Post({ post }: PostProps) {
                   <FaRegUser />{post.data.author}
                 </p>
                 <p>
-                  <FaClock /> 4 min
+                  <FaClock /> {readingTime} min
                 </p>
               </span>
-              <div className={`${styles.postContent}`} key={post.data.title}>
+              <div className={`${styles.postContent}`} key={post.uid}>
                 {post.data.content.map((content, index) => {
                   return (
                     <>
@@ -110,7 +117,7 @@ export const getStaticProps = async ({ params }) => {
       title: response.data.title,
       subtitle: response.data.subtitle,
       banner: {
-        url: response.data.banner?.url
+        url: response.data.banner?.url || null
       },
       author: response.data.author,
       content: response.data.content,
