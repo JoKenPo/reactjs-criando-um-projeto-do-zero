@@ -1,1 +1,49 @@
-// TODO
+.contentContainer {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: auto;
+}
+
+.infinityBanner {
+  width: 100%;
+
+  img {
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+}
+
+.posts {
+  max-width: 720px;
+  margin: 5rem auto 0;
+
+  span {
+    display: flex;
+  }
+
+  p {
+    display: flex;
+    align-items: center;
+    color: var(--gray-300);
+    margin-top: 0.5rem;
+    margin-right: 1.5rem;
+    line-height: 1.625rem;
+  }
+
+  svg {
+    margin-right: 0.5rem;
+  }
+
+  .postContent {
+    margin-top: 4rem;
+    line-height: 2rem;
+    font-size: 1.125rem;
+    color: var(--gray-100);
+
+    p {
+      margin: 4rem 1.5rem 1.5rem 0;
+    }
+  }
+}
