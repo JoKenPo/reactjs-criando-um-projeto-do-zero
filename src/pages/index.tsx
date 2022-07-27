@@ -44,11 +44,7 @@ export default function Home({ postsPagination }: HomeProps) {
         const posts = data.results.map(post => {
           return {
             uid: post.uid,
-            first_publication_date: format(
-              new Date(post.first_publication_date),
-              "dd MMM yyyy",
-              { locale: ptBR }
-            ),
+            first_publication_date: post.first_publication_date,
             data: {
               title: post.data?.title,
               subtitle: post.data?.subtitle,
@@ -75,13 +71,19 @@ export default function Home({ postsPagination }: HomeProps) {
         <div className={styles.posts}>
 
           {postsPagination?.results?.map(post => (
-            <Link href={`/post/${post.uid}`}>
-              <a key={post.uid} >
+            <Link href={`/post/${post.uid}`} key={post.uid}>
+              <a>
                 <strong>{post.data.title}</strong>
                 <span>{post.data.subtitle}</span>
                 <span>
                   <p>
-                    <FaRegCalendar /><time>{post.first_publication_date}</time>
+                    <FaRegCalendar /><time>
+                      {format(
+                        new Date(post.first_publication_date),
+                        "dd MMM yyyy",
+                        { locale: ptBR }
+                      )}
+                    </time>
                   </p>
                   <p>
                     <FaRegUser />{post.data.author}
@@ -93,8 +95,8 @@ export default function Home({ postsPagination }: HomeProps) {
           ))}
 
           {nextPostsPagination.results.map(post => (
-            <Link href={`/post/${post.uid}`}>
-              <a key={post.uid} >
+            <Link href={`/post/${post.uid}`} key={post.uid} >
+              <a >
                 <strong>{post.data.title}</strong>
                 <span>{post.data.subtitle}</span>
                 <span>
@@ -145,11 +147,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const posts = response.results.map(post => {
     return {
       uid: post.uid,
-      first_publication_date: format(
-        new Date(post.first_publication_date),
-        "dd MMM yyyy",
-        { locale: ptBR }
-      ),
+      first_publication_date: post.first_publication_date,
       data: {
         title: post.data?.title,
         subtitle: post.data?.subtitle,
